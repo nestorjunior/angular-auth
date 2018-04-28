@@ -12,10 +12,20 @@ export class AppComponent {
 	email: string;
 	password: string;
 
-	constructor(public authService: AuthService){
-		// console.log(authService);
+	constructor(public authService: AuthService){}
+
+	signup() {
+		this.authService.signup(this.email, this.password);
+		this.email = this.password = '';
 	}
 
+	login() {
+		this.authService.login(this.email, this.password);
+		this.email = this.password = '';
+	}
 
+	logout() {
+		this.authService.logout();
+	}
 
 }
