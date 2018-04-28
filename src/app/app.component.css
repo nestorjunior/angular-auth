@@ -1,4 +1,4 @@
-.jumbotron {
+.jumbotron, .alert-success {
 	margin-top: 50px;
 	border-radius: 0;
 }

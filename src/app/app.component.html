@@ -1,13 +1,25 @@
-<h1 *ngIf="authService.user | async">Bem Vindo {{ (authService.user | async)?.email }}!</h1>
 
+<!-- Container de Boas Vindas -->
 <div class="container">
   <div class="row">
     <div class="col">
       
-      <div class="jumbotron">
+      <div *ngIf="authService.user | async" class="alert alert-success" role="alert">
+        <h4 class="alert-heading text-center"> <strong>Bem Vindo</strong> {{ (authService.user | async)?.email }}!</h4>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- Container Formulário -->
+<div class="container">
+  <div class="row">
+    <div class="col">
+      
+      <div  *ngIf="!(authService.user | async)" class="jumbotron">
         
-        <div *ngIf="!(authService.user | async)">
-          
           <div class="form-group">
             <input class="form-control" type="text" [(ngModel)]="email" placeholder="email">
           </div>
@@ -16,23 +28,29 @@
           </div>
 
           
-          <button class="d-inline btn btn-primary" (click)="signup()" [disabled]="!email || !password">
+          <button class="float-sm-right btn btn-primary" (click)="signup()" [disabled]="!email || !password">
             Signup
           </button>
 
-          <button class="d-inline btn btn-primary" (click)="login()" [disabled]="!email || !password">
+          <button class="float-sm-right btn btn-primary" (click)="login()" [disabled]="!email || !password">
             Login
           </button>
       
-
-        </div>
-
       </div>
 
     </div>
   </div>
 </div>
 
-<button (click)="logout()" *ngIf="authService.user | async">
-  Logout
-</button>
+<!-- Container Logout -->
+<div class="container">
+  <div class="row">
+    <div class="col">
+      
+      <button class="float-sm-right btn btn-primary" (click)="logout()" *ngIf="authService.user | async">
+        Logout
+      </button>
+
+    </div>
+  </div>
+</div>
